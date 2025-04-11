@@ -8,10 +8,10 @@ fun main() {
     val partOfYear: Double = 2.0547945205479453E-4
     val apogee: Int = 327000
 
-    println(length)
-    println(age)
-    println(partOfDay)
-    println(seconds)
-    println(partOfYear)
-    println(apogee)
+    println("Расстояние, мм: $length")
+    println("Возраст Гагарина на момент полета: $age")
+    println("Часть дня проведенная в космосе: $partOfDay")
+    println("Количесто секунд проведенных в космосе: $seconds")
+    println("Часть года проведенная в космосе: $partOfYear")
+    println("Апогей орбиты, м: $apogee")
 }
