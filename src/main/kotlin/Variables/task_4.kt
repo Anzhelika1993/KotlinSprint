@@ -13,5 +13,5 @@ fun main() {
     println("Часть дня проведенная в космосе: $partOfDay")
     println("Количесто секунд проведенных в космосе: $seconds")
     println("Часть года проведенная в космосе: $partOfYear")
-    println("Апогей орбиты в метрах: $apogee")
+    println("Апогей орбиты, м: $apogee")
 }
