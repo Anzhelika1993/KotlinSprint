@@ -1,16 +1,14 @@
 package org.example.lesson_2
 
-import kotlin.time.Duration.Companion.hours
-import kotlin.time.Duration.Companion.minutes
-
 fun main() {
 
     var kristallOre = 7
     var ironOre = 11
-    var buff = 0.2
-    var buffKristallOre = (kristallOre * buff).toInt()
-    var buffIronOre = (ironOre * buff).toInt()
+    var buff = 20
+    var buffInPercent = 20/100.toDouble()
+    var buffKristallOre = (kristallOre * buffInPercent).toInt()
+    var buffIronOre = (ironOre * buffInPercent).toInt()
 
-    println(buffKristallOre)
-    println(buffIronOre)
+    println("Количество бонусной кристаллической руды: $buffKristallOre")
+    println("Количество бонусной железной руды: $buffIronOre")
 }
