@@ -6,11 +6,11 @@ fun main() {
     var move = 1
     var newField = "E4"
 
-    println("Move №$move from $field to $newField")
+    println("$field - $newField; $move")
 
     field = "D2"
     move++
     newField = "D3"
 
-    println("Move №$move from $field to $newField")
+    println("$field - $newField; $move")
 }
