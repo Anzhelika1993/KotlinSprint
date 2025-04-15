@@ -2,7 +2,7 @@ package org.example.lesson_3
 
 fun main() {
 
-    var multiplicand: Int = 8
+    var multiplicand = 8
     var multiplier1 = 1
     var multiplier2 = 2
     var multiplier3 = 3
