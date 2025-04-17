@@ -2,7 +2,7 @@ package org.example.lesson_4
 
 fun main() {
 
-    var day = 6
+    var day = 5
     var parity = day % 2
 
     println(
