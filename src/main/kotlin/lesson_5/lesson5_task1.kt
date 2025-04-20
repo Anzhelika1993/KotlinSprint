@@ -2,15 +2,15 @@ package org.example.lesson_5
 
 fun main() {
 
-    var namber1 = 12
-    var namber2 = 7
-    var trueResult = namber1 + namber2
+    var number1 = 12
+    var number2 = 7
+    var trueResult = number1 + number2
 
-    println("Докажите, что вы не бот. Решите пример")
+    println("Докажите, что вы не бот. Решите пример $number1 + $number2")
 
     var result = readln().toInt()
 
-    when (namber1 + namber2) {
+    when (trueResult) {
         result -> println("Добро пожаловать!")
         else -> println("Доступ запрещен.")
     }
