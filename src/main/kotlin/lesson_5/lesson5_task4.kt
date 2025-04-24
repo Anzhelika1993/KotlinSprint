@@ -5,7 +5,7 @@ const val RIGHT_PASSWORD = "PanGalactic"
 
 fun main() {
 
-    val gretting = """
+    val greeting = """
         Внимание, пассажир. Моя обязанность, как обычно, незавидная, - 
         приветствовать вас на борту корабля "Heart of Gold"
         Что ж, введи, пожалуйста, свое имя пользователя, чтобы мы могли приступить к процессу входа. 
@@ -13,7 +13,7 @@ fun main() {
         Да, вперед, пожалуйста, вводите свои данные...
     """.trimIndent()
 
-    println(gretting)
+    println(greeting)
 
     val login = readln()
 
