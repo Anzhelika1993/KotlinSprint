@@ -17,8 +17,10 @@ fun main() {
 
     val login = readln()
 
-    if (login != RIGHT_LOGIN){
-    println("Необходимо пройти регистрацию")
+    if (login == RIGHT_LOGIN) {
+        println("Ввести пароль");
+        val password = readln()
     } else {
-        println("Ввести пароль"); val password = readln()}
-   }
+        println("Необходимо пройти регистрацию")
+    }
+}
