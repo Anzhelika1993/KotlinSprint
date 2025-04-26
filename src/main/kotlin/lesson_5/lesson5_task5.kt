@@ -1,8 +1,11 @@
 package org.example.lesson_5
 
+const val NUMBER_FROM = 0
+const val NUMBER_TO =42
+
 fun main() {
 
-    val numbers = 0.rangeTo(42).toList()
+    val numbers = NUMBER_FROM.rangeTo(NUMBER_TO).toList()
     val numbersOfElements = 3
     val randomElements = numbers.asSequence().shuffled().take(numbersOfElements).toList()
 
