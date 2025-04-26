@@ -17,8 +17,8 @@ fun main() {
 
     val relultBMI = when {
         BMI < INDEX1 -> "Недостаточная масса тела"
-        INDEX1 <= BMI && BMI < INDEX2 -> "Нормальная масса тела"
-        INDEX2 <= BMI && BMI < INDEX3 -> "Избыточная масса тела"
+        BMI < INDEX2 -> "Нормальная масса тела"
+        BMI < INDEX3 -> "Избыточная масса тела"
         else -> "Ожирение"
     }
     println(String.format("%.2f", BMI))
