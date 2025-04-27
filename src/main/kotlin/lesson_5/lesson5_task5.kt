@@ -9,7 +9,7 @@ fun main() {
     val numbersOfElements = 3
     val randomElements = numbers.asSequence().shuffled().take(numbersOfElements).toList()
 
-    println("Введите три числа от $NUMBER_FROM до $NUMBER_TO")
+    println("Введите три числа в любом порядке от $NUMBER_FROM до $NUMBER_TO")
 
     val number1 = readln().toInt()
     val number2 = readln().toInt()
