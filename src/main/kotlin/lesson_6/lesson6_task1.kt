@@ -6,14 +6,11 @@ fun main() {
     val userLoginCreated = readln()
     val userPasswordCreated = readln()
 
-    println("Введите ваш логин и пароль")
-    val userLogin = readln()
-    val userPassword = readln()
-
     do {
         println("Введите ваш логин и пароль")
         val userLogin = readln()
         val userPassword = readln()
     } while (userLogin != userLoginCreated || userPassword != userPasswordCreated)
+
     println("Авторизация прошла успешно")
 }
