@@ -5,18 +5,18 @@ const val NUMBER_TO = 9
 
 fun main() {
 
-    val randomNumber = (NUMBER_FROM until NUMBER_TO).random()
+    val randomNumber = (NUMBER_FROM..NUMBER_TO).random()
 
-    println("Угадайте число в диапазоне от 1 до 9. У вас 5 попыток")
+    println("Угадайте число в диапазоне от $NUMBER_FROM до $NUMBER_TO. У вас 5 попыток")
 
     var limit = 5
 
     do {
         val userNumber = readln().toInt()
         if (userNumber == randomNumber) {
-            println("Это была великолепная игра!"); break
+            println("Это была великолепная игра!"); return
         } else println("Неверно. У вас осталось ${--limit} попытки")
     } while (limit > 0)
 
-    println("Было загадано число $randomNumber")
+         println("Было загадано число $randomNumber")
 }
