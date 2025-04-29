@@ -15,11 +15,9 @@ fun main() {
         val userNumber = readln().toInt()
         if (userNumber == randomNumber) {
             println("Это была великолепная игра!");
-            break
+            return
         } else println("Неверно. У вас осталось ${--limit} попытки")
     } while (limit > 0)
 
-    if (limit == 0) {
-        println("Было загадано число $randomNumber")
-    }
+    println("Было загадано число $randomNumber")
 }
