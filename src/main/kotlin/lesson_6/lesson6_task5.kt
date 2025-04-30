@@ -14,13 +14,16 @@ fun main() {
         print("Докажите, что вы не бот. Решите пример $number1 + $number2 = ")
 
         val result = readln().toInt()
-        val trueResult = (number1 + number2).toInt()
+        val trueResult = number1 + number2
 
         if (result == trueResult) {
             println("Добро пожаловать");
             return
-        } else --limit
-        println("Доступ запрещен")
+        } else {
+            println("Решено неверно. У вас осталось ${--limit} попыток")
+        }
 
     } while (limit > 0)
+
+    println("Доступ запрещен")
 }
