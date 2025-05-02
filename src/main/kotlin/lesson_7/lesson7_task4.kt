@@ -7,8 +7,7 @@ fun main() {
     val seconds = readln().toInt()
 
     for (i in seconds downTo 0) {
-        val secInMillis = (seconds * 100).toLong()
-        Thread.sleep(secInMillis)
+        Thread.sleep(1000)
         println(i)
     }
     println("Время вышло")
