@@ -3,9 +3,9 @@ package org.example.lesson_7
 fun main() {
 
     val range = 1000..9999
+    val rangeRandom = range.random()
 
-    for (i in range) {
-        val rangeRandom = range.shuffled().random()
+    do {
         println("Ваш код авторизации: $rangeRandom")
         print("Введите код авторизации: ")
 
@@ -17,5 +17,5 @@ fun main() {
             println("Добро пожаловать")
             return
         }
-    }
+    } while (true)
 }
