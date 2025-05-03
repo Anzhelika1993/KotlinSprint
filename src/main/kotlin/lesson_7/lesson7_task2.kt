@@ -3,20 +3,15 @@ package org.example.lesson_7
 fun main() {
 
     val range = 1000..9999
-    var rangeRandom = range.random()
+    var generatedCode: Int
+    var userEnterCode: Int
 
     do {
-        rangeRandom = range.random()
-        println("Ваш код авторизации: $rangeRandom")
+        generatedCode = range.random()
+        println("Ваш код авторизации: $generatedCode")
         print("Введите код авторизации: ")
+        userEnterCode = readln().toInt()
+    } while (userEnterCode != generatedCode)
 
-        val id = readln().toInt()
-
-        if (id != rangeRandom) {
-                   println("Неверно")
-        } else {
-            println("Добро пожаловать")
-            return
-        }
-    } while (true)
+    println("Добро пожаловать")
 }
