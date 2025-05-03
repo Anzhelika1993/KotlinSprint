@@ -8,21 +8,23 @@ fun main() {
     val letters = 'a'..'z'
     val capitalLetters = 'A'..'Z'
     val charSet = numbers + letters + capitalLetters
+
+    print("Задайте длину пароля ")
+
     val numberOfSymbols = readln().toInt()
     val pass = mutableListOf<String>()
+    pass.add(numbers.random().toString())
+    pass.add(letters.random().toString())
+    pass.add(capitalLetters.random().toString())
 
     if (numberOfSymbols < MIN_SYMBOLS) {
-
-        for (i in 1..MIN_SYMBOLS) {
-            val random = charSet.random().toString()
-            pass.add(random)
-        }
+        println("Минимальная длина пароля 6 символов")
     } else {
-        for (i in 1..numberOfSymbols) {
+        for (i in 4..numberOfSymbols) {
             val random = charSet.random().toString()
             pass.add(random)
         }
+        pass.shuffle()
+        println(pass.joinToString(separator = ""))
     }
-    pass.shuffle()
-    println(pass.joinToString(separator = ""))
 }
