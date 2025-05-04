@@ -10,11 +10,10 @@ fun main() {
 
     for (i in arrayOfIngredients) {
 
-        if (arrayOfIngredients.contains(ingredient)) {
+        if (i == ingredient) {
             println("Ингредиент $ingredient в рецепте есть")
-            break
-        } else
-            println("Такого ингредиента в рецепте нет")
             return
+        }
     }
+    println("Такого ингредиента в рецепте нет")
 }
