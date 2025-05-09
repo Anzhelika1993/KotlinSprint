@@ -1,15 +1,18 @@
 package org.example.lesson_8
 
+
 fun main() {
 
     print("Введите количество планируемых ингредиентов - ")
 
-    val sumOfIngredients = arrayOfNulls<String>(readln().toInt())
+    val sum = readln().toInt()
+    val sumOfIngredients = Array(sum) { "" }
 
-    for (i in sumOfIngredients) {
-        
-        val index = sumOfIngredients.indexOf(i)
-        sumOfIngredients[index] = readln()
+    println("Введите ингредиенты")
+
+    for (i in sumOfIngredients.indices) {
+        sumOfIngredients[i] = readln()
     }
-    println(sumOfIngredients.joinToString())
+
+    println("Список ингредиентов: ${sumOfIngredients.joinToString()}")
 }
