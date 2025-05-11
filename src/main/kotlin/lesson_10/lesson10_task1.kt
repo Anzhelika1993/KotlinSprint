@@ -4,8 +4,8 @@ val NUMBERS = 1..6
 
 fun main() {
 
-    val user = userThrow()
-    val computer = computerThrow()
+    val user = random()
+    val computer = random()
 
     println("Бросок кости пользователем: $user")
     println("Бросок кости компьютером: $computer")
@@ -17,6 +17,4 @@ fun main() {
     } else println("Победила дружба")
 }
 
-fun userThrow() : Int = NUMBERS.random()
-
-fun computerThrow() : Int = NUMBERS.random()
+fun random () = NUMBERS.random()
