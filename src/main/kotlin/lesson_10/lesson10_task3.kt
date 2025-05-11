@@ -2,14 +2,14 @@ package org.example.lesson_10
 
 fun main() {
 
-    println(passwordGenerator())
+    print("Задайте длину пароля: ")
+    val passLength = readln().toInt()
+
+    println(passwordGenerator(passLength))
 }
 
-fun passwordGenerator(): String {
+fun passwordGenerator(length: Int): String {
 
-    print("Задайте длину пароля: ")
-
-    var length = readln().toInt()
     val numbers = 0..9
     val symbols = "!\"#$%&'()*+,-./\" \""
     var pass = ""
