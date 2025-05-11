@@ -10,14 +10,16 @@ fun main() {
     print("Задайте пароль: ")
     val userLogin = readln()
 
-    validation(userName, userLogin)
+    if (validation(userName, userLogin)) {
+        println("Логин или пароль недостаточно длинные")
+    } else
+        println("Добро пожаловать")
 }
 
 fun validation(userName: String, userLogin: String): Boolean {
 
     if (userName.length < MIN_SYMBOLS || userLogin.length < MIN_SYMBOLS) {
-        println("Логин или пароль недостаточно длинные")
         return true
-    } else println("Добро пожаловать")
-    return false
+    } else
+        return false
 }
