@@ -1,15 +1,14 @@
 package org.example.lesson_9
 
-
 fun main() {
 
-    print ("Введите пять ингредиентов: ")
+    print("Введите пять ингредиентов: ")
 
     val ingredients = readln()
-    val listOfIngredients = ingredients.split(", ").toList()
+    val listOfIngredients = ingredients.split(", ")
+    val alphabetized = listOfIngredients.sorted()
 
-    listOfIngredients.sorted()
-    listOfIngredients.forEach{
+    alphabetized.forEach {
         println(it)
     }
 }
