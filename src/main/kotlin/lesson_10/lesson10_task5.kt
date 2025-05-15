@@ -20,16 +20,16 @@ fun authorization(log: String, pass: String): String? {
     return token
 }
 
-fun basket(token: String?): String {
+fun basket(userToken: String?): String {
 
     val shoppingList = listOf<String>(
         "Sirius Adult Ягненок 2 кг", "Лакомство GreenQzin Дрессура №1 Утка 50г",
         "Игрушка MPets Мяч-пищалка с хвостом голубой для собак", "Симпарика таблетки для собак З шт"
     )
-    val printShoppingList= shoppingList.joinToString (separator = ", ")
+    val printShoppingList = shoppingList.joinToString(separator = ", ")
     val errorAuthorization = "Ошибка авторизации"
 
-    if (token != null){
+    if (userToken != null) {
         return printShoppingList
     } else
         return errorAuthorization
@@ -42,8 +42,8 @@ fun main() {
     print("Введите пароль: ")
     val password = readln()
 
-    val token = authorization(log = String(), pass = String())
-    val basket = basket(token = String())
+    val token = authorization(log = login, pass = password)
+    val basket = basket(userToken = token)
 
     println(basket)
 }
