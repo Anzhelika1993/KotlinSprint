@@ -7,7 +7,7 @@ class User2(
     val email: String,
     var bio: String = ""
 ) {
-    fun userData() {
+    fun printUserData() {
         println(id)
         println(login)
         println(password)
@@ -24,10 +24,11 @@ class User2(
         print("Введите ваш пароль: ")
         val userPassword = readln()
 
-        if (userPassword == password)
+        if (userPassword == password) {
             print("Введите новый пароль: ")
-        password = readln()
-        println("Ваш пароль изменен")
+            password = readln()
+            println("Ваш пароль изменен")
+        }
     }
 }
 
@@ -38,10 +39,9 @@ fun main() {
         login = "Phantom assassin",
         password = "Stifling_Dagger1200",
         email = "Phantom.assassin@mail.ru",
-        )
+    )
 
     user.replaceBio()
     user.changePassword()
-
-    println(user.userData())
+    user.printUserData()
 }
