@@ -1,54 +1,60 @@
 package org.example.lesson_11
 
-import kotlin.String
-
-class User (
+data class User(
     val nikname: String,
-    val userStatus: String,
+    val status: String,
     val avatar: String,
-)
-
-class Rooms (
-    val cover: String,
-    val roomName: String,
-    var listOfUsers: MutableList<User>,
-)
-{
-    fun addUserToRoom(){
-        listOfUsers.add(User)
+) {
+    fun updateStatus(nikname: String, status: String) {
+        println(status)
     }
 }
 
-fun main(){
+class Room(
+    val cover: String,
+    val roomName: String,
+    val users: MutableList<User>,
+) {
+    fun addUser(user: User) {
+        users.add(user)
+    }
+}
+
+fun main() {
     val user1 = User(
         nikname = "Trololo",
-        userStatus = "разговаривает",
+        status = "разговаривает",
         avatar = "img Тотошка",
     )
 
     val user2 = User(
         nikname = "Flowers Lover",
-        userStatus = "разговаривает",
+        status = "разговаривает",
         avatar = "img Пионы",
     )
 
     val user3 = User(
         nikname = "Overlord",
-        userStatus = "пользователь заглушен",
+        status = "пользователь заглушен",
         avatar = "img Аниме",
     )
 
     val user4 = User(
         nikname = "Smurf",
-        userStatus = "микрофон выключен",
+        status = "микрофон выключен",
         avatar = "img Ворчун",
     )
 
-    val roomMusic = Rooms(
+    val room1 = Room(
         cover = "img Эквалайзер",
         roomName = "Музыка",
-        listOfUsers = mutableListOf(user1, user4, user2)
+        users = mutableListOf(user1, user4, user2),
     )
 
+    room1.addUser(user3)
+
+    user3.updateStatus("Overlord", "разговаривает")
+
+    println(room1.users)
 
 }
