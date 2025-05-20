@@ -2,21 +2,25 @@ package org.example.lesson_11
 
 data class User(
     val nikname: String,
-    val status: String,
+    var status: String,
     val avatar: String,
-) {
-    fun updateStatus(nikname: String, status: String) {
-        println(status)
-    }
-}
+)
 
 class Room(
     val cover: String,
-    val roomName: String,
+    val name: String,
     val users: MutableList<User>,
 ) {
     fun addUser(user: User) {
         users.add(user)
+    }
+
+    fun updateStatus(userName: String, userStatus: String) {
+        for (user in users) {
+            if (userName == user.nikname) {
+                user.status = userStatus
+            }
+        }
     }
 }
 
@@ -47,14 +51,13 @@ fun main() {
 
     val room1 = Room(
         cover = "img Эквалайзер",
-        roomName = "Музыка",
+        name = "Музыка",
         users = mutableListOf(user1, user4, user2),
     )
 
     room1.addUser(user3)
-
-    user3.updateStatus("Overlord", "разговаривает")
+    room1.updateStatus("Overlord", "разговаривает")
+    room1.updateStatus("Smurf", "пользователь заглушен")
 
     println(room1.users)
-
 }
