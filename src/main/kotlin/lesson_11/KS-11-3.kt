@@ -4,11 +4,7 @@ data class User(
     val nikname: String,
     var status: String,
     val avatar: String,
-) {
-    fun updateStatus(nikname: String, status: String) {
-        println(status)
-    }
-}
+)
 
 class Room(
     val cover: String,
@@ -20,11 +16,7 @@ class Room(
     }
 
     fun updateStatus(userName: String, userStatus: String) {
-        for (user in users) {
-            if (userName == user.nikname) {
-                user.status = userStatus
-            }
-        }
+        users.find { it.nikname == userName }?.status = userStatus
     }
 }
 
