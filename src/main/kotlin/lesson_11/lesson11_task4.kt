@@ -1,27 +1,18 @@
 package org.example.lesson_11
 
 class Category (
-    val mainCover: String,
-    val burgers: String,
-    val imgBurger: String,
-    val deserts: String,
-    val imgDesert: String,
-    val pizza: String,
-    val imgPizza: String,
-    val fish: String,
-    val imgFish: String,
-    val soups: String,
-    val imgSoup: String,
-    val salads: String,
-    val imgSalad: String,
+    val dish: String,
+    val imgOfDish: String,
+    val description: String,
 )
 
 class Recipe(
     val cover: String,
     val name: String,
+    val id: String,
     val ingredients: List<Ingredient>,
     val portion: Int,
-    val instruction: String,
+    val instruction: List<String>,
     val inFavorite: Boolean = false,
 )
 
