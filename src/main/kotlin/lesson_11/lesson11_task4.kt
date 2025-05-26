@@ -1,7 +1,8 @@
 package org.example.lesson_11
 
 class Category (
-    val dish: String,
+    val id: Int,
+    val title: String,
     val imgOfDish: String,
     val description: String,
 )
@@ -9,7 +10,7 @@ class Category (
 class Recipe(
     val cover: String,
     val name: String,
-    val id: String,
+    val id: Int,
     val ingredients: List<Ingredient>,
     val portion: Int,
     val instruction: List<String>,
