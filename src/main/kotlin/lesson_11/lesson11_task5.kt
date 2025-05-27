@@ -4,31 +4,33 @@ data class Forum(
     val listOfUsers: MutableList<Member>,
     val messages: MutableList<Message>,
 ) {
-    fun createNewUser(name: String = readln()): String {
+    fun createNewUser(name: String): Member {
         val elements = 0..9
         val number = 8
         var userId = ""
         for (i in 0..number) {
-            userId += elements.random()
+            userId += elements
         }
         val newUser = Member(userId = userId, userName = name)
         listOfUsers.add(newUser)
-        return userId
+        return newUser
     }
 
-    fun createNewMessage(memberId: String, text: String) {
-        for (member in listOfUsers) {
-            if (member.userId == memberId) {
+    fun createNewMessage(memberId: Member, text: String) {
+        val userIsMember= listOfUsers.find{it == memberId}
+//        for (member in listOfUsers) {
+//            if (member.userId == member) {
+            if (userIsMember != null){
                 val newMessege = Message(memberId, text)
                 messages.add(newMessege)
             }
         }
-    }
+
 
     fun printThread() {
         for (msg in messages) {
             for (member in listOfUsers) {
-                if (msg.authorId == member.userId) {
+                if (msg.authorId == member) {
                     println("${member.userName}: ${msg.message}")
                 }
             }
@@ -36,9 +38,9 @@ data class Forum(
     }
 }
 
-data class Member(var userId: String, var userName: String)
+data class Member(val userId: String, val userName: String)
 
-data class Message(val authorId: String, val message: String,)
+data class Message(val authorId: Member, val message: String,)
 
 fun main() {
 
