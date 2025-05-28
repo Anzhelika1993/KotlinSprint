@@ -8,11 +8,12 @@ class Forum(
         val elements = 0..9
         val number = 8
         var userIdCounter = 0
+        var id = 0
 
         for (i in 0..number) {
-            userIdCounter++
+            id = userIdCounter++
         }
-        val newUser = Member(userId = userIdCounter, userName = name)
+        val newUser = Member(userId = id, userName = name)
         listOfUsers.add(newUser)
         return newUser
     }
