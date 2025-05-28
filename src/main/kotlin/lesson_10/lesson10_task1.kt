@@ -1,6 +1,6 @@
 package org.example.lesson_10
 
-val NUMBERS = 1..6
+val NUMBERS_RANGE = 1..6
 
 fun main() {
 
@@ -17,4 +17,4 @@ fun main() {
     } else println("Победила дружба")
 }
 
-fun random () = NUMBERS.random()
+fun random (NUMBERS: IntRange) = NUMBERS_RANGE.random()
