@@ -1,46 +1,41 @@
 package org.example.lesson_11
 
-data class Forum(
+class Forum(
     val listOfUsers: MutableList<Member>,
     val messages: MutableList<Message>,
 ) {
     fun createNewUser(name: String): Member {
         val elements = 0..9
         val number = 8
-        var userId = ""
+        var userIdCounter = 0
+
         for (i in 0..number) {
-            userId += elements
+            userIdCounter++
         }
-        val newUser = Member(userId = userId, userName = name)
+        val newUser = Member(userId = userIdCounter, userName = name)
         listOfUsers.add(newUser)
         return newUser
     }
 
-    fun createNewMessage(memberId: Member, text: String) {
-        val userIsMember= listOfUsers.find{it == memberId}
-//        for (member in listOfUsers) {
-//            if (member.userId == member) {
-            if (userIsMember != null){
-                val newMessege = Message(memberId, text)
-                messages.add(newMessege)
-            }
-        }
+    fun createNewMessage(member: Member, text: String) {
+        val userIsMember = listOfUsers.find { it == member }
 
+        if (userIsMember != null) {
+            val newMessege = Message(member, text)
+            messages.add(newMessege)
+        }
+    }
 
     fun printThread() {
-        for (msg in messages) {
-            for (member in listOfUsers) {
-                if (msg.authorId == member) {
-                    println("${member.userName}: ${msg.message}")
-                }
-            }
+        messages.forEach {
+            println("${it.author.userName}: ${it.message}")
         }
     }
 }
 
-data class Member(val userId: String, val userName: String)
+data class Member(val userId: Int, val userName: String)
 
-data class Message(val authorId: Member, val message: String,)
+data class Message(val author: Member, val message: String)
 
 fun main() {
 
@@ -58,4 +53,9 @@ fun main() {
     forum.createNewMessage(createdUserId2, "Нет, кинь ссылку")
 
     forum.printThread()
+
+    val createdUserId3 = forum.createNewUser("Urlih")
+    println(createdUserId)
+    println(createdUserId2)
+    println(createdUserId3)
 }
