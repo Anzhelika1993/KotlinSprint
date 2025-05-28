@@ -3,26 +3,23 @@ package org.example.lesson_11
 class Forum(
     val listOfUsers: MutableList<Member>,
     val messages: MutableList<Message>,
-) {
-    fun createNewUser(name: String): Member {
-        val elements = 0..9
-        val number = 8
-        var userIdCounter = 0
-        var id = 0
 
-        for (i in 0..number) {
-            id = userIdCounter++
-        }
-        val newUser = Member(userId = id, userName = name)
+    ) {
+    private var userIdCounter = 0
+
+    fun createNewUser(name: String): Member {
+
+        val newUser = Member(userId = userIdCounter++, userName = name)
         listOfUsers.add(newUser)
         return newUser
     }
 
-    fun createNewMessage(member: Member, text: String) {
-        val userIsMember = listOfUsers.find { it == member }
+    fun createNewMessage(memberId: Int, text: String) {
+
+        val userIsMember = listOfUsers.find { it.userId == memberId }
 
         if (userIsMember != null) {
-            val newMessege = Message(member, text)
+            val newMessege = Message(userIsMember, text)
             messages.add(newMessege)
         }
     }
@@ -44,19 +41,14 @@ fun main() {
         listOfUsers = mutableListOf(),
         messages = mutableListOf(),
     )
-    val createdUserId = forum.createNewUser("Overlord")
-    val createdUserId2 = forum.createNewUser("Smurf")
+    val createdUser = forum.createNewUser("Overlord")
+    val createdUser2 = forum.createNewUser("Smurf")
 
-    forum.createNewMessage(createdUserId, "Привет всем!")
-    forum.createNewMessage(createdUserId, "Есть кто?")
-    forum.createNewMessage(createdUserId2, "Привет привет")
-    forum.createNewMessage(createdUserId, "Вы уже слушали новый альбом Антона Маскелиаде?")
-    forum.createNewMessage(createdUserId2, "Нет, кинь ссылку")
+    forum.createNewMessage(createdUser.userId, "Привет всем!")
+    forum.createNewMessage(createdUser.userId, "Есть кто?")
+    forum.createNewMessage(createdUser.userId, "Привет привет")
+    forum.createNewMessage(createdUser.userId, "Вы уже слушали новый альбом Антона Маскелиаде?")
+    forum.createNewMessage(createdUser.userId, "Нет, кинь ссылку")
 
     forum.printThread()
-
-    val createdUserId3 = forum.createNewUser("Urlih")
-    println(createdUserId)
-    println(createdUserId2)
-    println(createdUserId3)
 }
