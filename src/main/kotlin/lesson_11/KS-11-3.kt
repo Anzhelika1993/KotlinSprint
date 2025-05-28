@@ -1,17 +1,17 @@
 package org.example.lesson_11
 
-data class User(
+data class UserForRoom(
     val nikname: String,
     var status: String,
     val avatar: String,
 )
 
-class Room(
+data class Room(
     val cover: String,
     val name: String,
-    val users: MutableList<User>,
+    val users: MutableList<UserForRoom>,
 ) {
-    fun addUser(user: User) {
+    fun addUser(user: UserForRoom) {
         users.add(user)
     }
 
@@ -21,22 +21,22 @@ class Room(
 }
 
 fun main() {
-    val user1 = User(
+    val user1 = UserForRoom(
         nikname = "Trololo",
         status = "разговаривает",
         avatar = "img Тотошка",
     )
-    val user2 = User(
+    val user2 = UserForRoom(
         nikname = "Flowers Lover",
         status = "разговаривает",
         avatar = "img Пионы",
     )
-    val user3 = User(
+    val user3 = UserForRoom(
         nikname = "Overlord",
         status = "пользователь заглушен",
         avatar = "img Аниме",
     )
-    val user4 = User(
+    val user4 = UserForRoom(
         nikname = "Smurf",
         status = "микрофон выключен",
         avatar = "img Ворчун",
