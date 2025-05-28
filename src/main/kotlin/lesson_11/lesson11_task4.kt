@@ -1,6 +1,7 @@
 package org.example.lesson_11
 
 class Category (
+    val recipes: List<Recipe>,
     val id: Int,
     val title: String,
     val imgOfDish: String,
