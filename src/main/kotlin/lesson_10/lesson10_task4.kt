@@ -27,7 +27,7 @@ fun main() {
     println("Количество выигрышных партий: $countUserWinning")
 }
 
-fun random() = NUMBERS.random()
+fun random() = NUMBERS_RANGE.random()
 
 fun continueGame(answer: String): Boolean {
     if (answer == "Да") {
