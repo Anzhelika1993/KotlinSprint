@@ -5,15 +5,15 @@ class DayWeather(
     var nightTemperature: Int,
     var hasPrecipitations: Boolean,
 ) {
-    override fun toString(): String {
-        return "DayWeather(dayTemperature = $dayTemperature, nightTemperature = $nightTemperature, " +
-                "hasPrecipitations = $hasPrecipitations)"
+    fun displayWeatherInfo(){
+        println("Дневная температура: $dayTemperature°C, \n" +
+                "Ночная температура: $nightTemperature°C, \n" +
+                "Осадки: $hasPrecipitations")
     }
 }
 
 fun main() {
 
     val sunday = DayWeather(dayTemperature = 19, nightTemperature = 6, hasPrecipitations = true)
-
-    println(sunday)
+    sunday.displayWeatherInfo()
 }
