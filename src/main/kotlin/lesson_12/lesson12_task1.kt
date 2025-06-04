@@ -6,7 +6,9 @@ class Weather {
     var hasPrecipitations = false
 
     fun forecast() {
-        println(Weather())
+        println("Дневная температура: $dayTemperature°C,\n" +
+                "Ночная температура: $nightTemperature°C,\n" +
+                "Наличие осадков: $hasPrecipitations")
     }
 }
 
