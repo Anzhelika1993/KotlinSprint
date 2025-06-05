@@ -2,19 +2,18 @@ package org.example.lesson_12
 
 const val KELVIN = 273.15f
 
-class WeatherInCelsius(
-    var dayTemperature: Int,
-    var nightTemperature: Int,
-    var hasPrecipitations: Boolean,
-) {
+class WeatherInCelsius(_dayTemperature: Int, _nightTemperature: Int, _hasPrecipitations: Boolean) {
+    val dayTemperature = _dayTemperature
+        get() = (field - KELVIN).toInt()
+    val nightTemperature = _nightTemperature
+        get() = (field - KELVIN).toInt()
+    val hasPrecipitations = _hasPrecipitations
+
     fun weatherInfo() {
 
-        val dayTemperatureInCelsius = (dayTemperature - KELVIN).toInt()
-        val nightTemperatureInCelsius = (nightTemperature - KELVIN).toInt()
-
         println(
-            "Дневная температура: $dayTemperatureInCelsius°C, \n" +
-                    "Ночная температура: $nightTemperatureInCelsius°C, \n" +
+            "Дневная температура: $dayTemperature°C, \n" +
+                    "Ночная температура: $nightTemperature°C, \n" +
                     "Осадки: $hasPrecipitations"
         )
     }
@@ -22,6 +21,6 @@ class WeatherInCelsius(
 
 fun main() {
 
-    val friday = WeatherInCelsius(dayTemperature = 303, nightTemperature = 294, hasPrecipitations = true)
+    val friday = WeatherInCelsius(_dayTemperature = 303, _nightTemperature = 294, _hasPrecipitations = false)
     friday.weatherInfo()
 }
