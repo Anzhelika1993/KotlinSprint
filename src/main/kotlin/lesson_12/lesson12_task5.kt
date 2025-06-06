@@ -4,34 +4,31 @@ import kotlin.random.Random
 
 const val KELVIN_FOR_CALCULATION = 273.15f
 
-class WeatherForMonth(_dayTemperature: Int, _nightTemperature: Int, _hasPrecipitations: Boolean) {
-    var dayTemperature = _dayTemperature
-        get() = (field - KELVIN_FOR_CALCULATION).toInt()
-    var nightTemperature = _nightTemperature
-        get() = (field - KELVIN_FOR_CALCULATION).toInt()
-    var hasPrecipitations = _hasPrecipitations
+class WeatherForMonth(dayTemperature: Int, nightTemperature: Int, hasPrecipitations: Boolean) {
+
+    val dayTemperature = dayTemperature - KELVIN_FOR_CALCULATION.toInt()
+    val nightTemperature = nightTemperature - KELVIN_FOR_CALCULATION.toInt()
+    val hasPrecipitations = hasPrecipitations
 
     init {
         println(
-            "Дневная температура: $dayTemperature°C, \n" +
-                    "Ночная температура: $nightTemperature°C, \n" +
-                    "Осадки: $hasPrecipitations"
+            "Дневная температура: ${this@WeatherForMonth.dayTemperature}°C, \n" +
+                    "Ночная температура: ${this@WeatherForMonth.nightTemperature}°C, \n" +
+                    "Осадки: ${this@WeatherForMonth.hasPrecipitations}"
         )
     }
 }
 
 fun main() {
 
-    val days = mutableListOf<WeatherForMonth>()
-
-    for (i in 1..30) {
-        val day = WeatherForMonth(
-            _dayTemperature = (183..348).random(),
-            _nightTemperature = (183..348).random(),
-            _hasPrecipitations = Random.nextBoolean()
+    val days = List(30) {
+        WeatherForMonth(
+            dayTemperature = Random.nextInt(183, 348),
+            nightTemperature = Random.nextInt(183, 348),
+            hasPrecipitations = Random.nextBoolean()
         )
-        days.add(day)
     }
+
     val daysTempPerMonth = days.map { it.dayTemperature }
     val nightTempPerMonth = days.map { it.nightTemperature }
     val DaysWithPrecipitations = days.count { it.hasPrecipitations }
