@@ -4,11 +4,11 @@ import kotlin.random.Random
 
 const val KELVIN_FOR_CALCULATION = 273.15f
 
-class WeatherForMonth(dayTemperature: Int, nightTemperature: Int, hasPrecipitations: Boolean) {
+class WeatherForMonth(_dayTemperature: Int, _nightTemperature: Int, _hasPrecipitations: Boolean) {
 
-    val dayTemperature = dayTemperature - KELVIN_FOR_CALCULATION.toInt()
-    val nightTemperature = nightTemperature - KELVIN_FOR_CALCULATION.toInt()
-    val hasPrecipitations = hasPrecipitations
+    val dayTemperature = _dayTemperature - KELVIN_FOR_CALCULATION.toInt()
+    val nightTemperature = _nightTemperature - KELVIN_FOR_CALCULATION.toInt()
+    val hasPrecipitations = _hasPrecipitations
 
     init {
         println(
@@ -23,9 +23,9 @@ fun main() {
 
     val days = List(30) {
         WeatherForMonth(
-            dayTemperature = Random.nextInt(183, 348),
-            nightTemperature = Random.nextInt(183, 348),
-            hasPrecipitations = Random.nextBoolean()
+            _dayTemperature = Random.nextInt(183, 348),
+            _nightTemperature = Random.nextInt(183, 348),
+            _hasPrecipitations = Random.nextBoolean()
         )
     }
 
