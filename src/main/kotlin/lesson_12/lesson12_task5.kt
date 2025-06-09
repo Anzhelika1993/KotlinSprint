@@ -12,9 +12,9 @@ class WeatherForMonth(dayTemperature: Int, nightTemperature: Int, hasPrecipitati
 
     init {
         println(
-            "Дневная температура: ${this@WeatherForMonth.dayTemperature}°C, \n" +
-                    "Ночная температура: ${this@WeatherForMonth.nightTemperature}°C, \n" +
-                    "Осадки: ${this@WeatherForMonth.hasPrecipitations}"
+            "Дневная температура: $dayTemperature°C, \n" +
+                    "Ночная температура: $nightTemperature°C, \n" +
+                    "Осадки: $hasPrecipitations"
         )
     }
 }
