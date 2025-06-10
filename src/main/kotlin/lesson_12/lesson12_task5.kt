@@ -31,11 +31,11 @@ fun main() {
 
     val daysTempPerMonth = days.map { it.dayTemperature }
     val nightTempPerMonth = days.map { it.nightTemperature }
-    val DaysWithPrecipitations = days.count { it.hasPrecipitations }
+    val daysWithPrecipitations = days.count { it.hasPrecipitations }
 
     println("Дневные температуры за месяц, °C: $daysTempPerMonth")
     println("Ночные температуры за месяц, °C: $nightTempPerMonth")
-    println("Количество дней с осадками: $DaysWithPrecipitations")
+    println("Количество дней с осадками: $daysWithPrecipitations")
 
     val averageDaysTemp = daysTempPerMonth.average().toInt()
     val averageNightTemp = nightTempPerMonth.average().toInt()
