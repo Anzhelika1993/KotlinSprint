@@ -2,17 +2,17 @@ package org.example.lesson_13
 
 fun main() {
 
-    val company1 = DataOfCompany(
-        name = "Reka",
+    val contact1 = Contact(
+        name = "Angelika",
         telNumber = 83833034560,
         company = null
     )
 
-    val company2 = DataOfCompany(
-        name = "Птицефабрика \"Томская\"",
-        telNumber = 83822932602,
-        company = "Сибагро"
+    val contact2 = Contact(
+        name = "Ростислав",
+        telNumber = 89123456789,
+        company = "Reddit"
     )
 }
 
-class DataOfCompany(val name: String, val telNumber: Long, val company: String?)
+class Contact(val name: String, val telNumber: Long, val company: String?)
