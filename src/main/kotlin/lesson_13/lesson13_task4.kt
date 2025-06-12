@@ -6,23 +6,26 @@ fun main() {
     var contact: NewContact
 
     while (true) {
-        print("Введите имя: ")
+        print(
+            "Если желаете добавить новый контакт введите имя " +
+                    "(если хотите выйти из режима редактирования введите \"Выход\"): "
+        )
         val name = readln()
+        if (name.equals("Выход", ignoreCase = true)) {
+            break
+        }
         print("Введите номер телефона: ")
         val telNumber = readln().toLongOrNull()
         print("Введите название компании (поле необязательно для заполнения): ")
         var company: String? = readln()
 
         if (telNumber == null) {
-            println("Невозможно записать. Номер телефона не указан")
-            break
+            println("Невозможно записать контакт. Номер телефона не указан.")
+        } else {
+            contact = NewContact(name, telNumber, company)
+            println("Контакт добавлен!")
+            listOfContacts.add(contact)
         }
-
-        if (company == null) {
-            company = null
-        }
-        contact = NewContact(name, telNumber, company)
-        listOfContacts.add(contact)
     }
     listOfContacts.forEach { it.printContact() }
 }
@@ -30,6 +33,6 @@ fun main() {
 class NewContact(val name: String, val telNumber: Long?, val company: String?) {
 
     fun printContact() {
-        println("Имя: $name, Номер телефона: $telNumber, Компания: $company")
+        println("Имя: $name, Номер телефона: $telNumber, Компания: ${company ?: "не указана"}")
     }
 }
