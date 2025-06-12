@@ -10,7 +10,7 @@ fun main() {
         DataContact("Ростислав", 89996663355, company = "Reddit")
     )
 
-    val companies = listOfContacts.map { it.company }
+    val companies = listOfContacts.mapNotNull { it.company }
 
     for (company in companies) {
         println(company ?: "не указано")
