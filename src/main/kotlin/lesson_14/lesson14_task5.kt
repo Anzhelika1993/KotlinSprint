@@ -1,5 +1,7 @@
 package org.example.lesson_14
 
+import jdk.internal.joptsimple.internal.Messages.message
+
 fun main() {
 
     val user1 = User("Overlord")
@@ -10,13 +12,22 @@ fun main() {
 
     var chat = Chat(mutableListOf(), listOfUsers)
     val beginOfThread = chat.addMessage("Привет всем! Go в Overcooked", user4)
-    //  надо создать тред от этого сообщения
-    chat.addThreadMessage(user3, "Здаров. Неее давайте че-нить другое, надоело", beginOfThread.id)
-    chat.addThreadMessage(user2, "Привет, давайте я за", beginOfThread.id)
-    chat.addThreadMessage(user2, "Привет, да ладно тебе, весело же))", beginOfThread.id)
-    chat.addThreadMessage(user3, "Да вы опять все пересретесь", beginOfThread.id)
-    chat.addThreadMessage(user1,"Мы любя))", beginOfThread.id)
+    // надо создать тред от этого сообщения
 
+    val threadMsg: MutableList<ChildMessage> = mutableListOf(
+        chat.addThreadMessage(user3, "Здаров. Неее давайте че-нить другое, надоело", beginOfThread.id),
+        chat.addThreadMessage(user2, "Привет, давайте я за", beginOfThread.id),
+        chat.addThreadMessage(user2, "Привет, да ладно тебе, весело же))", beginOfThread.id),
+        chat.addThreadMessage(user3, "Да вы опять все пересретесь", beginOfThread.id),
+        chat.addThreadMessage(user1, "Мы любя))", beginOfThread.id),
+    )
+
+    val beginOfThread2 = chat.addMessage("Может в КС?", user3)
+    val threadMsg2: MutableList<ChildMessage> = mutableListOf(
+        chat.addThreadMessage(user2, "я не хочу в КС", beginOfThread2.id)
+    )
+
+    chat.printChat()
 }
 
 class Chat(
@@ -24,21 +35,36 @@ class Chat(
     val users: MutableList<User>
 ) {
     fun addMessage(text: String, author: User): Message {
-        var idCounter = 0
-        idCounter += 1
+        val idCounter = messages.size + 1
         val message = Message(author = author, text = text, id = idCounter)
+        messages.add(message)
         return message
     }
 
     fun addThreadMessage(author: User, text: String, parentMessageId: Int): ChildMessage {
-        var idCounterForthread = 0
-        idCounterForthread += 1
-        val threadMessage =
-            ChildMessage(author = author, text = text, id = idCounterForthread, parentMessageId = parentMessageId)
+        val idCounterForThread = messages.size + 1
+        val threadMessage = ChildMessage(
+            author = author, text = text, id = idCounterForThread, parentMessageId
+        )
+        messages.add(threadMessage)
         return threadMessage
     }
 
-    fun printThread(){}
+    fun printChat() {
+        val groupedMsg = messages.groupBy { message ->
+            if (message is ChildMessage)
+                message.parentMessageId else message.id
+        }
+
+        groupedMsg.forEach { (parentMessageId, message) ->
+            val mainMsg = messages.first()
+            println("${mainMsg.author}: ${mainMsg.text}")
+
+            messages.filterIsInstance<ChildMessage>().forEach {
+                println("\t ${it.author}: ${it.text}")
+            }
+        }
+    }
 }
 
 open class Message(
@@ -54,6 +80,6 @@ class ChildMessage(
     val parentMessageId: Int
 ) : Message(author, text, id)
 
-class User(
+data class User(
     val author: String
 )
