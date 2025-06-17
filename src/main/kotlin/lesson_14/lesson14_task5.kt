@@ -1,6 +1,7 @@
 package org.example.lesson_14
 
-import jdk.internal.joptsimple.internal.Messages.message
+var idCounter = 1
+var idCounterForThread = 1
 
 fun main() {
 
@@ -10,10 +11,8 @@ fun main() {
     val user4 = User("Kiwi")
     val listOfUsers = mutableListOf(user1, user2, user3, user4)
 
-    var chat = Chat(mutableListOf(), listOfUsers)
+    val chat = Chat(mutableListOf(), listOfUsers)
     val beginOfThread = chat.addMessage("Привет всем! Go в Overcooked", user4)
-    // надо создать тред от этого сообщения
-
     val threadMsg: MutableList<ChildMessage> = mutableListOf(
         chat.addThreadMessage(user3, "Здаров. Неее давайте че-нить другое, надоело", beginOfThread.id),
         chat.addThreadMessage(user2, "Привет, давайте я за", beginOfThread.id),
@@ -35,14 +34,14 @@ class Chat(
     val users: MutableList<User>
 ) {
     fun addMessage(text: String, author: User): Message {
-        val idCounter = messages.size + 1
+        idCounter += 1
         val message = Message(author = author, text = text, id = idCounter)
         messages.add(message)
         return message
     }
 
     fun addThreadMessage(author: User, text: String, parentMessageId: Int): ChildMessage {
-        val idCounterForThread = messages.size + 1
+        idCounterForThread += 1
         val threadMessage = ChildMessage(
             author = author, text = text, id = idCounterForThread, parentMessageId
         )
@@ -51,16 +50,16 @@ class Chat(
     }
 
     fun printChat() {
-        val groupedMsg = messages.groupBy { message ->
-            if (message is ChildMessage)
-                message.parentMessageId else message.id
+        val groupedMsg = messages.groupBy { it ->
+            if (it is ChildMessage)
+                it.parentMessageId else it.id
         }
 
         groupedMsg.forEach { (parentMessageId, message) ->
-            val mainMsg = messages.first()
+            val mainMsg = message.first()
             println("${mainMsg.author}: ${mainMsg.text}")
 
-            messages.filterIsInstance<ChildMessage>().forEach {
+            message.filterIsInstance<ChildMessage>().forEach {
                 println("\t ${it.author}: ${it.text}")
             }
         }
