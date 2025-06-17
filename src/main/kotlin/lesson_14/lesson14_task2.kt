@@ -4,6 +4,7 @@ fun main() {
 
     val ship = Liner()
     ship.printCharacteristics()
+    ship.runLoading()
     println()
 
     val cargoship = CargoShip()
@@ -26,7 +27,7 @@ open class Liner(
     val capacity: Int = 500,
 ) {
     open fun printCharacteristics() {
-        println("${this::class.simpleName}: Скорость судна = $speed узлов, вместимость, чел. = $capacity")
+        println("Скорость судна = $speed узлов, вместимость, чел. = $capacity")
     }
 
     open fun runLoading() {
@@ -38,7 +39,7 @@ class CargoShip(
     capacity: Int = 40,
 ) : Liner(speed, capacity) {
     override fun runLoading() {
-        println("Способ погрузки ${this::class.simpleName}: активирует погрузочный кран.")
+        println("Способ погрузки: активирует погрузочный кран.")
     }
 }
 
@@ -49,11 +50,11 @@ class IcebreakerShip(
 ) : Liner(speed, capacity) {
     override fun printCharacteristics() {
         super.printCharacteristics()
-        println("${this::class.simpleName} способно колоть лед: $iceBreakAbility")
+        println("Судно способно колоть лед: $iceBreakAbility")
     }
 
     override fun runLoading() {
-        println("Способ погрузки ${this::class.simpleName}: открывает ворота со стороны кормы.")
+        println("Способ погрузки: открывает ворота со стороны кормы.")
     }
 }
 
@@ -62,6 +63,6 @@ class PassengerShip(
     capacity: Int = 1186
 ) : Liner(speed, capacity) {
     override fun runLoading() {
-        println("Способ погрузки ${this::class.simpleName}: выдвигает горизонтальный трап со шкафута.")
+        println("Способ погрузки: выдвигает горизонтальный трап со шкафута.")
     }
 }
