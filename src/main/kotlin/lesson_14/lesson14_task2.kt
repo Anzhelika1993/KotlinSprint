@@ -31,6 +31,7 @@ open class Liner(
     }
 
     open fun runLoading() {
+        println("Способ погрузки: зависит от типа судна")
     }
 }
 
