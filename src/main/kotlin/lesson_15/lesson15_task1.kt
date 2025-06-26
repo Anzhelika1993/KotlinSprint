@@ -3,30 +3,41 @@ package org.example.lesson_15
 fun main() {
     val carp = Fish()
     val seagull = Bird()
-    val duck = Bird()
+    val duck = Universal()
 
     carp.swimming()
     seagull.flying()
     duck.flying()
-
+    duck.swimming()
 }
 
-class Fish() : MovementOfFish {
+class Fish() : Swimable {
     override fun swimming() {
-        println("Метод передвижения существа: плавание")
+        println("Метод передвижения существа класса ${this::class.simpleName}: плавание")
     }
 }
 
-class Bird() : MovementOfBird {
+class Bird() : Flyable {
     override fun flying() {
-        println("Метод передвижения существа: полет")
+        println("Метод передвижения существа класса ${this::class.simpleName}: полет")
     }
 }
 
-interface MovementOfFish {
+class Universal() : Flyable, Swimable {
+    override fun flying() {
+        println("Метод передвижения существа класса ${this::class.simpleName}: полет")
+    }
+
+    override fun swimming() {
+        println("Метод передвижения существа класса ${this::class.simpleName}: плавание")
+    }
+
+}
+
+interface Swimable {
     fun swimming()
 }
 
-interface MovementOfBird {
+interface Flyable {
     fun flying()
 }
