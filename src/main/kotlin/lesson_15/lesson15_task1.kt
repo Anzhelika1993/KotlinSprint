@@ -1,9 +1,9 @@
 package org.example.lesson_15
 
 fun main() {
-    val carp = Fish()
-    val seagull = Bird()
-    val duck = Universal()
+    val carp = Carp()
+    val seagull = Seagull()
+    val duck = Duck()
 
     carp.swimming()
     seagull.flying()
@@ -11,19 +11,19 @@ fun main() {
     duck.swimming()
 }
 
-class Fish() : Swimable {
+class Carp() : Swimable {
     override fun swimming() {
         println("Метод передвижения существа класса ${this::class.simpleName}: плавание")
     }
 }
 
-class Bird() : Flyable {
+class Seagull() : Flyable {
     override fun flying() {
         println("Метод передвижения существа класса ${this::class.simpleName}: полет")
     }
 }
 
-class Universal() : Flyable, Swimable {
+class Duck() : Flyable, Swimable {
     override fun flying() {
         println("Метод передвижения существа класса ${this::class.simpleName}: полет")
     }
