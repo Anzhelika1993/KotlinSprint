@@ -16,7 +16,6 @@ fun main() {
     acousticGuitar.searching()
     acousticGuitar.searchComponent(guitarCable)
     acousticGuitar.searchComponent(acousticStrings)
-    guitarPick.searching()
 }
 
 abstract class Product(val name: String, val amount: Int)
@@ -46,24 +45,15 @@ class Instrument(
         if (result.isEmpty()) {
             println("Комплектующий товар ${part.name} для $name не найден")
         } else {
-            println("Товар ${part.name} для $name имеется в наличии в кол-ве: ${part.amount}")
+            result.forEach {
+                println("Товар ${it.name} для $name имеется в наличии в кол-ве: ${it.amount}")
+            }
         }
         println()
     }
 }
 
-
-class Component(name: String, amount: Int) : Product(name, amount), SearchingOfProduct {
-    override fun searching() {
-        println("Выполняется поиск")
-
-        if (amount == 0) {
-            println("Товара ${name} нет в наличии")
-        } else {
-            println("$name в наличии: $amount")
-        }
-    }
-}
+class Component(name: String, amount: Int) : Product(name, amount)
 
 interface SearchingOfProduct {
     fun searching()
