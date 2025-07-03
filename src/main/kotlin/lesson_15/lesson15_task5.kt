@@ -17,55 +17,60 @@ fun main() {
     val c3 = Cargo("Молоко", 800)
 
     println("***Загружаем пассажиров***")
-    car.load(p1)
-    car.load(p2)
-    car.load(p3)
-    car1.load(p5)
-    car1.load(p6)
-    truck.load(p4)
+    car.loadingPassenger(p1)
+    car.loadingPassenger(p2)
+    car.loadingPassenger(p3)
+    car1.loadingPassenger(p5)
+    car1.loadingPassenger(p6)
+    truck.loadingPassenger(p4)
     println("***Загружаем груз***")
-    truck.load(c1)
-    truck.load(c2)
-    truck.load(c3)
+    truck.loadingCargo(c1)
+    truck.loadingCargo(c2)
+    truck.loadingCargo(c3)
     println("***В пути***")
     car.drive()
     car1.drive()
     truck.drive()
     println("***Выгрузка***")
-    car.unload()
-    car1.unload()
-    truck.unload()
+    car.unloadPassenger()
+    car1.unloadPassenger()
+    truck.unloadPassenger()
+    truck.unloadCargo()
 }
 
-interface Transport {
-    fun load(transportable: Transportable)
-    fun unload()
+interface CargoTransportation {
+    fun loadingCargo(cargo: Cargo)
+    fun unloadCargo()
+}
+
+interface PassengerTransportation {
+    fun loadingPassenger(passenger: Passenger)
+    fun unloadPassenger()
+}
+
+interface Driveable {
     fun drive()
 }
 
-interface Transportable
+data class Passenger(val name: String)
 
-data class Passenger(val name: String) : Transportable
+data class Cargo(val name: String, val weightKg: Int)
 
-data class Cargo(val name: String, val weightKg: Int) : Transportable
-
-class Car(val name: String) : Transport {
+class Car(val name: String) : PassengerTransportation, Driveable {
     private val maxPassengers = 3
     private val passengers = mutableListOf<Passenger>()
 
-    override fun load(transportable: Transportable) {
-        if (transportable is Passenger) {
-            if (passengers.size >= maxPassengers) {
-                println("Свободных мест нет. Пассажиров в $name: ${passengers.size}/$maxPassengers")
-                return
-            } else {
-                passengers.add(transportable)
-                println("Свободных мест в $name после ${transportable.name}: ${maxPassengers - passengers.size}")
-            }
+    override fun loadingPassenger(passenger: Passenger) {
+        if (passengers.size >= maxPassengers) {
+            println("Свободных мест нет. Пассажиров в $name: ${passengers.size}/$maxPassengers")
+            return
+        } else {
+            passengers.add(passenger)
+            println("Свободных мест в $name после ${passenger.name}: ${maxPassengers - passengers.size}")
         }
     }
 
-    override fun unload() {
+    override fun unloadPassenger() {
         passengers.clear()
         println("$name высадил пассажиров")
     }
@@ -75,39 +80,43 @@ class Car(val name: String) : Transport {
     }
 }
 
-class Truck(val name: String) : Transport {
+class Truck(val name: String) : PassengerTransportation, CargoTransportation, Driveable {
 
-    val maxPassengers = 1
-    val passengers = mutableListOf<Passenger>()
-    val maxCargo = 2000
-    val cargo = mutableListOf<Cargo>()
+    private val maxPassengers = 1
+    private val passengers = mutableListOf<Passenger>()
+    private val maxCargo = 2000
+    private val cargoList = mutableListOf<Cargo>()
 
-    override fun load(transportable: Transportable) {
-        if (transportable is Passenger) {
-            if (passengers.size >= maxPassengers) {
-                println("Свободных мест нет. Пассажиров в $name: ${passengers.size}/$maxPassengers")
-            } else {
-                passengers.add(transportable)
-                println("Свободных мест в $name после ${transportable.name}: ${maxPassengers - passengers.size}")
-            }
-        } else if (transportable is Cargo) {
-            val sumOfCargo = cargo.sumOf { it.weightKg }
-            if (sumOfCargo + transportable.weightKg > maxCargo) {
-                println("В $name невозможно больше загрузить. Лимит достигнут. Загружено в кг: ${cargo.sumOf { it.weightKg }}/$maxCargo")
-            } else {
-                cargo.add(transportable)
-                println("В $name загружено $cargo. Итого загружено в кг: ${cargo.sumOf { it.weightKg }}/$maxCargo")
-            }
+    override fun loadingPassenger(passenger: Passenger) {
+        if (passengers.size >= maxPassengers) {
+            println("Свободных мест нет. Пассажиров в $name: ${passengers.size}/$maxPassengers")
+        } else {
+            passengers.add(passenger)
+            println("Свободных мест в $name после ${passenger.name}: ${maxPassengers - passengers.size}")
         }
     }
 
-    override fun unload() {
+    override fun unloadPassenger() {
         passengers.clear()
-        cargo.clear()
-        println("$name выгрузил груз и высадил пассажира")
+        println("$name высадил пассажиров")
+    }
+
+    override fun loadingCargo(cargo: Cargo) {
+        val sumOfCargo = cargoList.sumOf { it.weightKg }
+        if (sumOfCargo + cargo.weightKg > maxCargo) {
+            println("В $name невозможно больше загрузить. Лимит достигнут. Загружено в кг: ${cargoList.sumOf { it.weightKg }}/$maxCargo")
+        } else {
+            cargoList.add(cargo)
+            println("В $name загружено $cargoList. Итого загружено в кг: ${cargoList.sumOf { it.weightKg }}/$maxCargo")
+        }
+    }
+
+    override fun unloadCargo() {
+        cargoList.clear()
+        println("$name выгрузил груз")
     }
 
     override fun drive() {
-        println("$name везет груз $cargo и пассажира $passengers")
+        println("$name везет груз $cargoList и пассажира $passengers")
     }
 }
