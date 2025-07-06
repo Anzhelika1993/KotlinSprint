@@ -31,21 +31,28 @@ fun main() {
     car.drive()
     car1.drive()
     truck.drive()
-    println("***Выгрузка***")
-    car.unloadPassenger()
-    car1.unloadPassenger()
-    truck.unloadPassenger()
-    truck.unloadCargo()
+    println("***Выгрузка пассажиров***")
+    car.unloadPassenger(p1)
+    car.unloadPassenger(p2)
+    car.unloadPassenger(p3)
+    car1.unloadPassenger(p5)
+    car1.unloadPassenger(p6)
+    truck.unloadPassenger(p4)
+
+    println("***Выгрузка груза***")
+    truck.unloadCargo(c1)
+    truck.unloadCargo(c3)
+    truck.unloadCargo(c2)
 }
 
 interface CargoTransportation {
     fun loadingCargo(cargo: Cargo)
-    fun unloadCargo()
+    fun unloadCargo(cargo: Cargo)
 }
 
 interface PassengerTransportation {
     fun loadingPassenger(passenger: Passenger)
-    fun unloadPassenger()
+    fun unloadPassenger(passenger: Passenger)
 }
 
 interface Driveable {
@@ -66,13 +73,23 @@ class Car(val name: String) : PassengerTransportation, Driveable {
             return
         } else {
             passengers.add(passenger)
-            println("Свободных мест в $name после ${passenger.name}: ${maxPassengers - passengers.size}")
+            println("${passenger.name} сел в $name. Свободных мест: ${maxPassengers - passengers.size}")
         }
     }
 
-    override fun unloadPassenger() {
-        passengers.clear()
-        println("$name высадил пассажиров")
+    override fun unloadPassenger(passenger: Passenger) {
+        val unload = passengers.find { it.name == passenger.name }
+
+        if (unload != null) {
+            passengers.remove(unload)
+            println("$name высадил пассажира ${passenger.name}")
+        } else {
+            println("Пассажира ${passenger.name} нет в $name")
+        }
+
+        if (passengers.isEmpty()) {
+            println("В $name нет пассажиров")
+        }
     }
 
     override fun drive() {
@@ -92,13 +109,23 @@ class Truck(val name: String) : PassengerTransportation, CargoTransportation, Dr
             println("Свободных мест нет. Пассажиров в $name: ${passengers.size}/$maxPassengers")
         } else {
             passengers.add(passenger)
-            println("Свободных мест в $name после ${passenger.name}: ${maxPassengers - passengers.size}")
+            println("${passenger.name} сел в $name. Свободных мест: ${maxPassengers - passengers.size}")
         }
     }
 
-    override fun unloadPassenger() {
-        passengers.clear()
-        println("$name высадил пассажиров")
+    override fun unloadPassenger(passenger: Passenger) {
+        val unload = passengers.find { it.name == passenger.name }
+
+        if (unload != null) {
+            passengers.remove(unload)
+            println("$name высадил пассажира ${passenger.name}")
+        } else {
+            println("Пассажира ${passenger.name} нет в $name")
+        }
+
+        if (passengers.isEmpty()) {
+            println("В $name нет пассажиров")
+        }
     }
 
     override fun loadingCargo(cargo: Cargo) {
@@ -107,13 +134,23 @@ class Truck(val name: String) : PassengerTransportation, CargoTransportation, Dr
             println("В $name невозможно больше загрузить. Лимит достигнут. Загружено в кг: ${cargoList.sumOf { it.weightKg }}/$maxCargo")
         } else {
             cargoList.add(cargo)
-            println("В $name загружено $cargoList. Итого загружено в кг: ${cargoList.sumOf { it.weightKg }}/$maxCargo")
+            println("$cargoList загружен в $name. Итого загружено в кг: ${cargoList.sumOf { it.weightKg }}/$maxCargo")
         }
     }
 
-    override fun unloadCargo() {
-        cargoList.clear()
-        println("$name выгрузил груз")
+    override fun unloadCargo(cargo: Cargo) {
+        val unload = cargoList.find { it.name == cargo.name }
+
+        if (unload != null) {
+            cargoList.remove(unload)
+            println("$name выгрузил груз ${cargo.name}: ${cargo.weightKg} кг.")
+        } else {
+            println("Груз ${cargo.name} не был загружен в $name")
+        }
+
+        if (cargoList.isEmpty()) {
+            println("В $name нет груза")
+        }
     }
 
     override fun drive() {
