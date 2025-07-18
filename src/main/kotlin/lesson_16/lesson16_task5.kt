@@ -43,7 +43,6 @@ class Player(val name: String, private var health: Int, var power: Int) {
         health = 0
         power = 0
         println("$name убит")
-
     }
 
     fun getCurrentHealth() {
