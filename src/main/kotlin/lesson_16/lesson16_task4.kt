@@ -3,16 +3,16 @@ package org.example.lesson_16
 fun main() {
 
     val order = Order("2657-33", "Собран")
-    order.getStatus()
+    println("Статус заказа: ${order.getStatus()}")
 
     order.sendStatusChangeRequest("В службе доставки")
-    order.getStatus()
+    println("Статус заказа: ${order.getStatus()}")
 
     order.sendStatusChangeRequest("Ожидает получения")
-    order.getStatus()
+    println("Статус заказа: ${order.getStatus()}")
 }
 
-class Order(protected val order: String, val initialStatus: String) {
+class Order(private val orderNumber: String, initialStatus: String) {
 
     private var status = initialStatus
 
@@ -25,7 +25,5 @@ class Order(protected val order: String, val initialStatus: String) {
         changeStatus(newStatusRequest)
     }
 
-    fun getStatus() {
-        println("Статус заказа $order: $status")
-    }
+    fun getStatus(): String = status
 }
