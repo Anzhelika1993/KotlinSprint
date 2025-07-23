@@ -17,7 +17,7 @@ fun main() {
 }
 
 class Ship(
-    private val _name: String,
+    _name: String,
     val averageSpeed: Int,
     var homePort: String
 ) {
