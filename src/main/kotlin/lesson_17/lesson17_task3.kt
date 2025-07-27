@@ -17,5 +17,5 @@ class Folder(private val _name: String, private var _count: Int, private val isS
         get() = if (isSecret) "Скрытая папка" else _name
 
     val count: Int
-        get() = if (isSecret) 0  else _count
+        get() = if (isSecret) 0 else _count
 }
