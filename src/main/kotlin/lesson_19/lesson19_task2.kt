@@ -13,21 +13,18 @@ fun main() {
     product3.getInfo()
 }
 
-enum class Category(val type: String) {
-    CLOTHES("Одежда") {
-        override fun getCategory() = Category.CLOTHES.type
+enum class Category {
+    CLOTHES,
+    STATIONERY ,
+    OTHER;
 
-    },
-    STATIONERY("Канцелярские товары") {
-        override fun getCategory() = Category.STATIONERY.type
-
-    },
-    OTHER("Разное") {
-        override fun getCategory() = Category.OTHER.type
-        };
-
-    abstract fun getCategory(): String
-}
+    fun getCategory(): String =
+        when (this) {
+            Category.CLOTHES -> "Одежда"
+            Category.STATIONERY -> "Канцелярские товары"
+            Category.OTHER -> "Разное"
+        }
+    }
 
 class Product (val name: String, val id: Int, val category: Category){
     fun getInfo (){
